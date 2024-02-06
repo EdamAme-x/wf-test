@@ -1,0 +1,17 @@
+name: Check IP Address
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check_ip:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get IP Address
+        run: echo "::set-output name=ip_address::$(curl -s https://api.ipify.org)"
+        
+      - name: Print IP Address
+        run: echo "IP Address: ${{ steps.get_ip.outputs.ip_address }}"
